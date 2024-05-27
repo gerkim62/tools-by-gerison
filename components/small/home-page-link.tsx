@@ -10,16 +10,16 @@ const HomePageLink = (props: Props) => {
     <div>
       <Link
         className="flex gap-1 font-semibold  tracking-tight rounded-lg  text-5xl dark:hover:text-gray-200 font-serif -mb-1 justify-center items-center"
-        href={"/home"}
+        href={"/"}
       >
         <Image
-          className={` sm:block  lg:block `}
-          src={"/images/logo-round.png"}
+          className={` sm:block  lg:block border-2  rounded-full`}
+          src={"/img/logo.png"}
           alt={app.name}
-          width={36}
-          height={36}
+          width={46}
+          height={46}
         />
-        <span className="text-4xl sm:5xl -mb-1">{app.name}</span>
+        <span className="text-4xl sm:5xl ">{app.name}</span>
       </Link>
     </div>
   );
