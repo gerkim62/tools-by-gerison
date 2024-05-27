@@ -19,7 +19,7 @@ const HomePageLink = (props: Props) => {
           width={46}
           height={46}
         />
-        <span className="text-4xl sm:5xl ">{app.name}</span>
+        <span className="text-4xl sm:5xl text-gradient">{app.name}</span>
       </Link>
     </div>
   );
