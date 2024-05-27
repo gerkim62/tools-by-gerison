@@ -1,4 +1,3 @@
-
 import { app } from "@/constants";
 import Image from "next/image";
 import Link from "./link-with-loader";
@@ -9,7 +8,7 @@ const HomePageLink = (props: Props) => {
   return (
     <div>
       <Link
-        className="flex gap-1 font-semibold  tracking-tight rounded-lg  text-5xl dark:hover:text-gray-200 font-serif -mb-1 justify-center items-center"
+        className="flex gap-1 font-semibold  tracking-tight rounded-lg  text-5xl dark:hover:text-gray-200 font-serif -mb-1 justify-center items-center "
         href={"/"}
       >
         <Image
