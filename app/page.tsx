@@ -7,7 +7,7 @@ import ToolCard from "@/components/features/tool-card";
 
 export default function Component() {
   const tools = Array.from({ length: 6 }, (_, i) => ({
-    href: "#",
+    href: "/exam-timetable",
     label: "Tool " + (i + 1),
   }));
   return (
