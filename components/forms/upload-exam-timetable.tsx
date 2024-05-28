@@ -16,7 +16,7 @@ type Props = {};
 export default function UploadExamTimetable({}: Props) {
   const {
     register,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
     handleSubmit,
   } = useForm<z.infer<typeof UploadExamTimetableFormSchema>>({
     mode: "all",
@@ -46,7 +46,12 @@ export default function UploadExamTimetable({}: Props) {
           type="file"
           {...register("examTimetable")}
         />
-        <SubmitButton disabled={!isValid}>Upload</SubmitButton>
+        <SubmitButton
+          isLoading={isSubmitting}
+          disabled={!isValid || isSubmitting}
+        >
+          Upload
+        </SubmitButton>
       </div>
       {typeof errors.examTimetable?.message === "string" && (
         <p className="text-red-500 text-sm">{errors.examTimetable.message}</p>

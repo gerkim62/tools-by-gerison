@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Course {
+model ExamTimetableCourse {
   id          Int       @id @default(autoincrement())
   name        String
   code        String
@@ -17,15 +17,15 @@ model Course {
   page        Int
   group       String
   others      Json[]
-  timetable   Timetable @relation(fields: [timetableId], references: [id], onDelete: Cascade)
+  timetable   ExamTimetable @relation(fields: [timetableId], references: [id], onDelete: Cascade)
   timetableId Int
 }
 
-model Timetable {
+model ExamTimetable {
   id       Int      @id @default(autoincrement())
   semester String
   name     String
-  courses  Course[]
+  courses  ExamTimetableCourse[]
   uploaderName String
 
   createdAt DateTime @default(now())

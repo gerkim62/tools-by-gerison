@@ -6,7 +6,9 @@ type ProcessedCourse = {
   date: string;
   page: number;
   group: string;
-  others: string[];
+  others: {
+    [key: string]: string;
+  }[];
 };
 
 type ProcessedTimetable = {
@@ -15,4 +17,4 @@ type ProcessedTimetable = {
   courses: ProcessedCourse[];
 };
 
-export type { ProcessedCourse, ProcessedTimetable}
+export type { ProcessedCourse, ProcessedTimetable };
