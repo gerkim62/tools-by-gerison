@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id          Int       @id @default(autoincrement())
+  name        String
+  code        String
+  start       String
+  end         String
+  date        String
+  page        Int
+  group       String
+  others      Json[]
+  timetable   Timetable @relation(fields: [timetableId], references: [id], onDelete: Cascade)
+  timetableId Int
+}
+
+model Timetable {
+  id       Int      @id @default(autoincrement())
+  semester String
+  name     String
+  courses  Course[]
+  uploaderName String
+
+  createdAt DateTime @default(now())
+}

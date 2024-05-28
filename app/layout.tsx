@@ -30,7 +30,7 @@ export default function RootLayout({
         <Providers>
           <Header />
 
-          <Toaster position="top-center" duration={7000} closeButton />
+          <Toaster position="bottom-right" duration={7000} closeButton />
           <div className="flex h-full overflow-hidden ">
             <DesktopSidebar />
 
