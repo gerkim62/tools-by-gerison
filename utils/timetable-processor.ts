@@ -1,7 +1,3 @@
-// read the json from "data/timetable.json" using fs
-// and identify the object type of the timetable object
-import fs from "fs";
-
 import {
   COURSE_CODE_REGEX,
   DATE_REGEX,
@@ -10,9 +6,7 @@ import {
   SEMESTER_REGEX,
   TIME_REGEX,
 } from "./regexes";
-import { ProcessedCourse, ProcessedTimetable } from "@/types";
-
-const timetableJson = fs.readFileSync("data/timetable.json", "utf8");
+import { ProcessedExamCourse, ProcessedExamTimetable } from "@/types";
 
 const OTHERS_KEYS = [
   "Instructor",
@@ -23,10 +17,10 @@ const OTHERS_KEYS = [
   "Credit Hours",
 ];
 
-function getProcessedTimetable(timetableObjectsPages: unknown[][]) {
+function getProcessedExamTimetable(timetableObjectsPages: unknown[][]) {
   let lastValidDate: string | undefined = undefined;
 
-  const processedTimetable: ProcessedTimetable = {
+  const processedTimetable: ProcessedExamTimetable = {
     semester: "",
     name: "",
     courses: [],
@@ -36,7 +30,7 @@ function getProcessedTimetable(timetableObjectsPages: unknown[][]) {
     const timetableObjects = timetableObjectsPages[i];
 
     for (const timetableObject of timetableObjects as unknown[]) {
-      const course: ProcessedCourse = {
+      const course: ProcessedExamCourse = {
         name: "",
         code: "",
         start: "",
@@ -130,4 +124,4 @@ function getProcessedTimetable(timetableObjectsPages: unknown[][]) {
   return processedTimetable;
 }
 
-export default getProcessedTimetable;
+export default getProcessedExamTimetable;

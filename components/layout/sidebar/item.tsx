@@ -12,7 +12,7 @@ export function SidebarItem({ item }: { item: SideNavItem }) {
   const commonClasses =
     "relative rounded flex flex-row items-center h-10 focus:outline-none hover:bg-muted/50 border-l-4 border-transparent hover:border-border hover:border hover:border-l-4 pr-6 cursor-pointer transition-colors duration-200 ease-in-out";
   const isActive =
-    item.active || (item.type === "link" && pathname.startsWith(item.href));
+    item.active || (item.type === "link" && pathname === item.href);
   const activeClasses = isActive ? " bg-accent/50 !border-border " : "";
 
   const renderBadge = () =>

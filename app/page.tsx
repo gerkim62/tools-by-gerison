@@ -3,13 +3,10 @@
  * @see https://v0.dev/t/1dgQODTT4nM
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import ToolCard from "@/components/features/tool-card";
+import ToolCard from "@/components/features/shared/tool-card";
+import { tools } from "@/constants";
 
 export default function Component() {
-  const tools = Array.from({ length: 6 }, (_, i) => ({
-    href: "/exam-timetable",
-    label: "Tool " + (i + 1),
-  }));
   return (
     <>
       <section className="w-full py-6 pt-8">
@@ -28,9 +25,9 @@ export default function Component() {
         </div>
       </section>
       <section className="w-full py-12  bg-gray-100 dark:bg-gray-900">
-        <div className="container grid grid-cols-1 gap-6 px-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10 xl:grid-cols-4">
+        <div className="container grid sm:grid-cols-2 gap-6 px-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10 xl:grid-cols-4">
           {tools.map((tool, i) => (
-            <ToolCard key={i} />
+            <ToolCard {...tool} key={i} />
           ))}
         </div>
       </section>

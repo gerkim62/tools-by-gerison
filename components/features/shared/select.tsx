@@ -1,25 +1,20 @@
 "use client";
 
-import { Course } from "@prisma/client";
 import { useTheme } from "next-themes";
-import { useState, useTransition } from "react";
-import ReactSelect, { MultiValue } from "react-select";
+import { ComponentProps, useTransition } from "react";
+import ReactSelect from "react-select";
 
-type Props = {};
+type Props = ComponentProps<typeof ReactSelect>;
 
-export default function Select({}: Props) {
-    const courses:Course[] = []
-    function handleChange(selected: MultiValue<{ value: string; label: string }>) {
-        setSelectedCourseCodes(selected.map((course) => course.value));
-    }
+export default function Select(props: Props) {
   const [isPending, startTransition] = useTransition();
 
-  const [selectedCourseCodes, setSelectedCourseCodes] = useState<string[]>([]);
   const darkModeStyles = {
     control: (provided: any) => ({
       ...provided,
       backgroundColor: "#020815",
-      padding: "0.3rem",
+      padding: "0.1rem",
+      borderRadius: "0.5rem",
     }),
 
     option: (provided: any) => ({
@@ -45,7 +40,7 @@ export default function Select({}: Props) {
 
   const { theme } = useTheme();
 
-  const styles = theme === "dark"? darkModeStyles : {};
+  const styles = theme === "dark" ? darkModeStyles : {};
 
   return (
     <ReactSelect
@@ -56,15 +51,8 @@ export default function Select({}: Props) {
       isLoading={isPending}
       // end of optimization
       isClearable={false}
-      isMulti
-      options={courses.map((course) => ({
-        value: course.code,
-        label: `${course.code} - ${course.name} (${course.group})`,
-      }))}
-      onChange={handleChange}
-      className="basic-multi-select mt-2 w-full "
-      classNamePrefix="select"
-      placeholder="Search courses..."
+      className="select mt-2 w-full "
+      {...props}
     />
   );
 }

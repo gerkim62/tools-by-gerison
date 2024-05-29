@@ -7,7 +7,6 @@ import { SideNavGroup } from "@/types";
 import { HomeIcon, Lightbulb, MessageCircle } from "lucide-react";
 import { SidebarItem } from "./item";
 
-
 const sidebarItemsGroups: SideNavGroup[] = [
   {
     title: "General",
@@ -15,7 +14,7 @@ const sidebarItemsGroups: SideNavGroup[] = [
       {
         label: "Home",
         icon: HomeIcon,
-        href: "/home",
+        href: "/",
         type: "link",
       },
     ],
@@ -25,16 +24,16 @@ const sidebarItemsGroups: SideNavGroup[] = [
     items: [
       {
         type: "link",
-        href: "/messages",
+        href: "/contact-me",
         icon: MessageCircle,
-        label: "Messages",
+        label: "Contact Me",
       },
-      {
-        type: "link",
-        href: "/suggestions",
-        icon: Lightbulb,
-        label: "Suggestions",
-      },
+      // {
+      //   type: "link",
+      //   href: "/suggestions",
+      //   icon: Lightbulb,
+      //   label: "Suggestions",
+      // },
     ],
   },
 ];

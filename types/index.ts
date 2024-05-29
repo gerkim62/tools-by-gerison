@@ -1,4 +1,15 @@
 import { type SideNavItem, type SideNavGroup } from "./side-nav";
-import { type ProcessedCourse, type ProcessedTimetable } from "./timetable";
+import {
+  type ProcessedExamCourse,
+  type ProcessedExamTimetable,
+} from "./exam-timetable";
 
-export type { SideNavItem, SideNavGroup, ProcessedCourse, ProcessedTimetable };
+import type { Tool } from "./tool";
+
+export type {
+  SideNavItem,
+  SideNavGroup,
+  ProcessedExamCourse,
+  ProcessedExamTimetable,
+  Tool,
+};

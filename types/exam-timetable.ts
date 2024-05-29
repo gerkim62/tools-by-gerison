@@ -1,4 +1,4 @@
-type ProcessedCourse = {
+type ProcessedExamCourse = {
   name: string;
   code: string;
   start: string;
@@ -11,10 +11,10 @@ type ProcessedCourse = {
   }[];
 };
 
-type ProcessedTimetable = {
+type ProcessedExamTimetable = {
   semester: string;
   name: string;
-  courses: ProcessedCourse[];
+  courses: ProcessedExamCourse[];
 };
 
-export type { ProcessedCourse, ProcessedTimetable };
+export type { ProcessedExamCourse, ProcessedExamTimetable };

@@ -1,55 +1,42 @@
-import getProcessedTimetable from "@/utils/timetable-processor";
+import getProcessedExamTimetable from "@/utils/timetable-processor";
 import { tabletojson } from "tabletojson";
-// import fs from "fs";
-import prisma from "@/utils/prisma";
-export default async function uploadExamTimetable({ html }: { html: string }) {
+import prisma from "@/lib/prisma";
+import { redirect } from "next/navigation";
+export default async function uploadExamTimetable({
+  html,
+}: {
+  html: string;
+}): Promise<
+  | never
+  | {
+      error: string;
+    }
+> {
   try {
     const uploaderName = "UEAB";
 
     if (html.length < 10) {
-      throw new Error("Invalid HTML file provided");
+      return { error: "Invalid HTML Provided" };
     }
 
     const tablesAsJson = tabletojson.convert(html);
 
-    //save the tables as JSON file
-    // fs.writeFileSync(
-    //   "data/timetable.json",
-    //   JSON.stringify(tablesAsJson, null, 2)
-    // );
-
-    const processedTimetable = getProcessedTimetable(tablesAsJson);
-
-    // save as JSON file
-    // fs.writeFileSync(
-    //   "data/final-timetable.json",
-    //   JSON.stringify(processedTimetable, null, 2)
-    // );
-
-    // console.log(processedTimetable);
-
-    const withoutStartOrEnd = processedTimetable.courses.filter(
-      (course) => !course.start || !course.end
-    );
-
-    // save the courses without start or end time to a file
-    // fs.writeFileSync(
-    //   "data/without-start-or-end.json",
-    //   JSON.stringify(withoutStartOrEnd, null, 2)
-    // );
+    const processedTimetable = getProcessedExamTimetable(tablesAsJson);
 
     if (processedTimetable.courses.length < 1) {
-      throw new Error("No courses found in the timetable");
+      return { error: "No courses found in the timetable" };
     }
 
     try {
       await prisma.$transaction(async (prisma) => {
-        // Begin the transaction
-        // Delete the timetable first
-        await prisma.timetable.deleteMany({});
+        await Promise.all([
+          prisma.examTimetable.deleteMany({}),
+          prisma.examTimetableCourse.deleteMany({}),
+        ]);
+        console.log("Deleted existing exam timetable and course data");
 
         // Create the new timetable and its associated courses within the same transaction
-        const timetable = await prisma.timetable.create({
+        const timetable = await prisma.examTimetable.create({
           data: {
             uploaderName,
             semester: processedTimetable.semester,
@@ -60,16 +47,20 @@ export default async function uploadExamTimetable({ html }: { html: string }) {
           },
         });
 
-        console.log(timetable);
+        console.log("Saved timetable to database:", timetable.id);
       });
     } catch (error) {
       const message =
         error instanceof Error ? error.message : JSON.stringify(error);
-      throw new Error("Error saving timetable to database. " + message);
+      console.error("Error saving timetable to database:", message);
+
+      return { error: "Error saving timetable to database" };
     }
   } catch (error) {
-    // Handle validation errors
-    console.error("Validation error:", error);
-    // You may throw an error or return false or any other way you handle errors in your application
+    console.error("Error processing timetable:", error);
+
+    return { error: "Error processing timetable" };
   }
+
+  redirect("/exam-timetable?uploaded=true");
 }

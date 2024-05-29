@@ -1,3 +1,5 @@
+import { Tool } from "@/types";
+
 const app = {
   name: "CuteTools",
   description:
@@ -5,4 +7,22 @@ const app = {
   version: "1.0.0",
 };
 
-export { app };
+const tools: Tool[] = [
+  {
+    name: "Calendify",
+    description:
+      "Scans your E-Learning portal for due assignments, quizzes, discussions, and more and sends you a Notification immediately.",
+    url: "https://calendify.vercel.app/",
+    logoUrl:
+      "https://raw.githubusercontent.com/gerkim62/moodle-calendar/main/public/calendify.png",
+  },
+  {
+    name: "Exam Timetable",
+    description:
+      "View your personal exam timetable here! Easily extract your UEAB exam timetable. No need to peruse a massive page PDF.",
+    logoUrl: "/exam-timetable/logo.jpeg",
+    url: "/exam-timetable",
+  },
+];
+
+export { app, tools };
