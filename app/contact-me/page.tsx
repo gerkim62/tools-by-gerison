@@ -6,11 +6,12 @@ import {
   Facebook,
   MessageCircle,
 } from "lucide-react";
+import Image from "next/image";
 
 const ContactMe = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-full py-2 p-4 text-center">
-      <img
+      <Image width={150} height={150}
         src="/img/profile-pic.jpg"
         alt="Logo"
         className="w-32 h-32 mb-4 rounded-full"
