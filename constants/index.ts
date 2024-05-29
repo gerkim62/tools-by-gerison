@@ -20,7 +20,7 @@ const tools: Tool[] = [
     name: "Exam Timetable",
     description:
       "View your personal exam timetable here! Easily extract your UEAB exam timetable. No need to peruse a massive page PDF.",
-    logoUrl: "/exam-timetable/logo.jpeg",
+    logoUrl: "/img/exam-timetable/logo.jpeg",
     url: "/exam-timetable",
   },
 ];

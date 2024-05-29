@@ -4,7 +4,7 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 
-import Link from "next/link";
+import Link from "@/components/small/link-with-loader";
 import UploadExamTimetable from "@/components/forms/upload-exam-timetable";
 
 export default function Component() {

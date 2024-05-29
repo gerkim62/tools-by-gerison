@@ -3,7 +3,7 @@
  * @see https://v0.dev/t/is1uNac5jUd
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import Link from "next/link";
+import Link from "@/components/small/link-with-loader";
 
 import prisma from "@/lib/prisma";
 import ExamTimetableSelect from "@/components/features/exam-timetable/select";
@@ -22,7 +22,7 @@ export default async function ExamTimetablePage() {
   console.log(examTimetable?.courses);
 
   if (!examTimetable?.courses)
-    return <NothingHere title="Timetable Not Available" />;
+    return <NothingHere title="Timetable Not Available" description="It seems like no timetable has been uploaded to the database yet!" />;
 
   return (
     <>
