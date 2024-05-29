@@ -5,12 +5,12 @@
  */
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-
 import prisma from "@/lib/prisma";
 import ExamTimetableSelect from "@/components/features/exam-timetable/select";
 import NothingHere from "@/components/features/shared/nothing-here";
 import ExamTimetable from "@/components/features/exam-timetable/timetable";
+
+export const dynamic = "force-dynamic";
 
 export default async function ExamTimetablePage() {
   const examTimetable = await prisma.examTimetable.findFirst({
